@@ -1,20 +1,24 @@
 /**
- * Class WorldClock
- * This is the subclass
+ *  Sub Class
  */
 
-public class WorldClock extends Clock{
+public class WorldClock extends Clock {
+    private int a;
 
-
-    public WorldClock() {
+    public WorldClock(int a) {
         super();
-
-
+        this.a = a%24;
     }
 
-    @Override
-    public String getHours() {
-String hours = String.valueOf(Integer.parseInt(super.getHours())+3);
-        return hours;
+    public int getHours() {
+        int h = super.getHours();
+        h = a;
+        if (a > 23) {
+            h = h - 24;
+        }
+        else if (a < 0) {
+            h = h + 24;
+        }
+        return h;
     }
 }

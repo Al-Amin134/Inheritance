@@ -1,36 +1,31 @@
-/* 1. Implement a class Clock whose getHours and getMinutes methods return the current
-time at your location. (Call java.time.Instant.now().toString() or, if you are not using
-Java 8, new java.util.Date().toString() and extract the time from that string.) Also
-provide a getTime method that returns a string with the hours and minutes by calling
-the getHours and getMinutes methods. Provide a subclass WorldClock whose constructor
-accepts a time offset. For example, if you live in California, a new WorldClock(3) should
-show the time in New York, three time zones ahead. Which methods did you over-
-ride? (You should not override getTime.)
-*/
-
-/**
- * Class Clock
- * This is the Super Class
+/*
+2:Add an alarm feature to the Clock class. When setAlarm(hours,
+ minutes) is called, the clock stores the alarm. When you call getTime, and the alarm
+ time has been reached or exceeded, return the time followed by the string "Alarm" (or,
+ if you prefer, the string "\u23F0") and clear the alarm. What do you need to do to
+ make the setAlarm method work for WorldClock objects?
  */
 
+
+/**
+ * Super Class
+ */
+
+import java.util.Date;
+
 public class Clock {
-   private String hours;
-    private String min;
-    private String time;
-
-    public String getHours() {
-        hours = java.time.Instant.now().toString().substring(0,2);
+    public int getHours(){
+        String time = new Date().toString().split("")[3];
+        int hours = Integer.parseInt(time.split(":")[0]);
         return hours;
-    }
 
-    public String getMin() {
-        min = java.time.LocalTime.now().toString().substring(3,5);
-        return min;
     }
-    public String getTime() {
-        time = getHours()+":"+getMin();
-        return time;
+    public int getMinutes(){
+        String time = new Date().toString().split("")[3];
+        int minutes = Integer.parseInt(time.split(":")[1]);
+        return minutes;
     }
-
-
+    public String getTime(){
+        return String.format("",getHours(),getMinutes());
+    }
 }
